@@ -54,10 +54,10 @@ public class Solution4 {
       String sIn = "2";
       if(in.hasNextLine()){
           sIn = in.nextLine();
-        }                  //input value
+        }                 
       int movement = Integer.parseInt(sIn);
       in.close();
-      
+
         int[] result = new Solution4().moveValue(arr,movement);   //process
         new Solution4().printArray(result);                         //output
     }
