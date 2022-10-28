@@ -4,7 +4,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class Solution {
+public class Solution1 {
 	public int[] reverse(int[] array){
     
       /*Implement your reverse method here*/
