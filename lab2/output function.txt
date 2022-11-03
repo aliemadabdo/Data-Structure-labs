@@ -7,3 +7,18 @@ public void printArray(int[] result){
       }
       System.out.print("]");
     }
+    
+    =====================lab3==============================
+        void printOutput()
+    {
+        System.out.print("[[");
+        for(int i=0; i<N ; i++){
+            System.out.print( "(" + firstvalu[i] ", " + secondValue[i] + ")" );
+            while(i != N-1){
+                System.out.print(", ");
+            }
+        }
+        
+        System.out.print("]]");
+
+    } 
