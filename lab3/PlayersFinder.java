@@ -58,9 +58,9 @@ public class PlayersFinder implements IPlayersFinder{
                     System.out.println("x:"+ (x+1));
                     System.out.println("y:" + y);
                     
-                    centers[pointIndex] = new PlayersFinder().calcCenter(arrrayIndecator,x+1,y,minArea, rows, columns);
+                    centers[pointIndex] = new PlayersFinder().calcCenter(arrrayIndecator, x+1, y, minArea, rows, columns);
                     if ((x+1)>xMax){
-                        xMax =x+1;
+                        xMax = x+1;
                         pointIndex++; 
                     }
                     System.out.println("x max " + xMax); 
@@ -70,7 +70,7 @@ public class PlayersFinder implements IPlayersFinder{
                 if (arrrayIndecator[x-1][y] == 1){
                     System.out.println("x:" + (x-1) );
                     System.out.println("y:" + y);
-                    centers[pointIndex] = new PlayersFinder().calcCenter(arrrayIndecator,x-1,y,minArea, rows, columns);
+                    centers[pointIndex] = new PlayersFinder().calcCenter(arrrayIndecator, x-1, y, minArea, rows, columns);
                     if ((x-1)<xMin){
                         xMin=x-1;
                         pointIndex++; 
@@ -103,21 +103,21 @@ public class PlayersFinder implements IPlayersFinder{
                     System.out.println("point index " + pointIndex); 
                 }
 
-         //   System.out.println("centers in the function:" + centers);
-           
-        System.out.println("number of pixiles :" + numOfPixiles);
-        if ( (numOfPixiles*4) >= minArea ){
-            center.setLocation((xMax-xMin+1), (yMax-yMin+1)); 
-            System.out.println("this is a player");
-        }
-           
-        System.out.println("center 1,2,3... in the function:" + center);  
+            //   System.out.println("centers in the function:" + centers);
             
-            System.out.println("final centers :");
-        for(int i=0; i<pointIndex; i++){
-            System.out.print(centers[i]+" ");
-        }
-        System.out.println("");
+            System.out.println("number of pixiles :" + numOfPixiles);
+            if ( (numOfPixiles*4) >= minArea ){
+                center.setLocation((xMax-xMin+1), (yMax-yMin+1)); 
+                System.out.println("this is a player");
+            }
+            
+            System.out.println("center befor return:" + center);  
+            System.out.println("point index for all centers array" + pointIndex); 
+            System.out.println("all centers :");
+            for(int i=0; i<pointIndex; i++){
+                System.out.print(centers[i]+" ");
+            }
+            System.out.println("");
 
         }
 
