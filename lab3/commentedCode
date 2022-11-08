@@ -1,0 +1,152 @@
+
+
+// //
+// 6, 8         rows,cols
+// 33JUBU33
+// 3U3O4433
+// O33P44NB
+// PO3NSDP3
+// VNDSD333
+// OINFD33X
+// 3            color
+// 16           threshold
+// //
+
+    //public void getInputInt();
+  // java.awt.Point[] findPlayers(String[] photo, int team, int threshold);
+    /**
+     * Search for players locations at the given photo
+     * param photo
+     *     Two dimension array of photo contents
+     *     Will contain between 1 and 50 elements, inclusive
+     * param team
+     *     Identifier of the team
+     * param threshold
+     *     Minimum area for an element
+     *     Will be between 1 and 10000, inclusive
+     * return
+     *     Array of players locations of the given team
+     */
+
+    // int xMax, xMin, yMax, yMin,columns,rows; 
+    // // Scanner sc = new Scanner(System.in);                    //open scanner
+  
+    // // Getter
+    // // public int getRows() {
+    // //     return rows;
+    // // }
+    // // public int getColumns() {
+    // //     return columns;
+    // // }
+    // // // Setter
+    // // public void setRows(int newRows) {
+    // //     this.rows = newRows;
+    // // // }
+    // // public void setColumns(int newColumns) {
+    // //     this.columns = newColumns;
+    // // }
+
+// Point temp = new Point(); 
+        // Point center = new Point();
+        //center.setLocation(x, y); 
+
+//         // pointIndex++;
+
+    //       //  System.out.println("rows " + getRows()); 
+
+    //         // if (x<rows-1)
+    //         //     if (arrrayIndecator[x+1][y] == 1){
+    //         //         // System.out.println("x: "+ (x+1));
+    //         //         // System.out.println("y: " + y);
+    //         //         //  pointIndex++; 
+    //         //         new PlayersFinder().calcCenter(arrrayIndecator, x+1, y, rows, columns);
+    //         //         if ((x+1)>xMax){
+    //         //             xMax = x+1;
+    //         //         }
+    //         //         System.out.println("x max: " + xMax); 
+    //         //         //System.out.println("x max number in the player: " + pointIndex); 
+    //         //     }
+    //         // if (x>0)        
+    //         //     if (arrrayIndecator[x-1][y] == 1){
+    //         //         // System.out.println("x:" + (x-1) );
+    //         //         // System.out.println("y:" + y);
+    //         //         // pointIndex++; 
+    //         //         new PlayersFinder().calcCenter(arrrayIndecator, x-1, y, rows, columns);
+    //         //         if ((x-1)<xMin){
+    //         //             xMin=x-1;
+                        
+    //         //         }
+    //         //         System.out.println("x min: " + xMin); 
+    //         //        // System.out.println("x min number in the player: " + pointIndex); 
+    //         //     }
+    //         // if (y<columns-1)
+    //         //     if (arrrayIndecator[x][y+1] == 1){
+    //         //         // System.out.println("x:"+ x);
+    //         //         // System.out.println("y:" + (y+1));
+    //         //         // pointIndex++; 
+    //         //         new PlayersFinder().calcCenter(arrrayIndecator, x, y+1, rows, columns);
+    //         //         if ((y-1)<yMin){
+    //         //             yMin=y-1;
+                        
+    //         //         }
+    //         //         System.out.println("y min :" + yMin); 
+    //         //         //System.out.println("y min number in the player: " + pointIndex); 
+    //         //     }
+    //         // if (y>0)
+    //         //     if (arrrayIndecator[x][y-1] == 1){
+    //         //         // System.out.println("x:"+ x);
+    //         //         // System.out.println("y:" + (y-1));
+    //         //         // pointIndex++; 
+    //         //         new PlayersFinder().calcCenter(arrrayIndecator, x, y-1, rows, columns);
+    //         //         if ((y+1)>yMax){
+    //         //             yMax =y+1;
+                    
+    //         //         }
+    //         //         System.out.println("y max :" + yMax); 
+    //         //        // System.out.println("y max number in the player: " + pointIndex); 
+    //         //     }
+
+    //         //   System.out.println("temp in the function:" + temp);
+            
+    //         //System.out.printf("and this is the pixile number %d in the current player:" , pointIndex);
+           
+    //         // // System.out.println(" all centers array" + pointIndex); 
+    //         // System.out.println("all temp :");
+    //         // for(int i=0; i<pointIndex; i++){
+    //         //     System.out.print(temp[i]+" ");
+    //         // }
+    //         // System.out.println("");
+
+    //     }
+    //     // System.out.println("");
+    //     // System.out.printf("This pixile x=%d y=%d it self is done checking",x,y );
+    //     // System.out.println("");
+    //     // System.out.println("temp we collected :");
+    //     // for(int i=0; i<pointIndex; i++){
+    //     //     System.out.print(temp[i]+" ");
+    //     // }
+    //     // System.out.println("");
+    //     // System.out.printf("xmax=%d xmin=%d ymax=%d ymin=%d",xMax,xMin,yMax,yMin );
+    //     // System.out.println("");
+    //     // System.out.println("point index variable to succes the condition :" + pointIndex); 
+    //     // if ( (pointIndex*4) < minArea ){
+    //     //     return null;
+    //     // }
+    //     // else {
+    //     //     center.setLocation((xMax-xMin+1), (yMax-yMin+1)); 
+    //     //     System.out.println("center befor return:" + center); 
+    //     // }
+    //     // return center;
+    // }
+    
+    // // public int count_cells(int[][] arrrayIndecator, int rows, int columns){
+    // //     int numberOfCells=1;
+    // //     arrrayIndecator[rows][columns]=0;
+    // //     for(int y=rows-1; y<rows+1; y++){
+    // //         for(int x=columns-1; x<columns+1; x++){
+    // //             numberOfCells=+ new PlayersFinder().count_cells(arrrayIndecator, y, x);
+    // //         }
+
+    // //     }
+    // //     return numberOfCells;
+    // // }

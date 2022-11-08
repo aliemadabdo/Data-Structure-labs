@@ -8,16 +8,22 @@ import java.awt.*;
 
 interface IPlayersFinder {
 
-    int xMax = 0, xMin=0, yMax=0, yMin=0;
-
+    public void printInt1DArray(int[] printArray);
     public void printInt2DArray(int[][] printArray,int rows,int columns);
     public void printChar2DArray(char[][] printArray,int rows,int columns);
-    public Point calcCenter (int[][] arrrayIndecator, int x, int y,int minArea, int rows, int columns, int pointIndex);
+    public void DFS_to_calc_center (int[][] arrrayIndecator, int x, int y,int rows, int columns, int[] neededPointes);
+    //public int DFS_to_check_area (int[][] arrrayIndecator, int i, int j);
 }
 
 
 public class PlayersFinder implements IPlayersFinder{
-    int xMax = 0, xMin=0, yMax=0, yMin=0;
+
+    public void printInt1DArray(int[] printArray){
+        System.out.println("");
+        for(int i=0; i<printArray.length; i++){
+                System.out.print(printArray[i]+" ");
+        }
+    }
     public void printInt2DArray(int[][] printArray,int rows,int columns){
         System.out.println("");
         for(int i=0; i<rows; i++){
@@ -26,7 +32,6 @@ public class PlayersFinder implements IPlayersFinder{
             }
             System.out.println("");
         }
-
     }
     public void printChar2DArray(char[][] printArray,int rows,int columns){
         System.out.println("");
@@ -38,115 +43,49 @@ public class PlayersFinder implements IPlayersFinder{
         }
 
     }
-   
-    public Point calcCenter (int[][] arrrayIndecator, int x, int y, int minArea, int rows, int columns, int pointIndex){
-                                        //here is a place of any threshold
-        Point temp = new Point(); 
-        Point center = new Point();
-        //center.setLocation(x, y); 
-
+    public void DFS_to_calc_center (int[][] arrrayIndecator, int x, int y,int rows,int columns,int[] neededPointes){
+                                
         System.out.println(" "); 
         System.out.printf("for elemnt of index x=%d and y=%d ", x , y); 
         System.out.println(" "); 
 
-        if (arrrayIndecator[x][y] == 1){ 
-                                //here is a place for threshold which are not done checking on it 
+        if ( x < 0 || y < 0 || x > (rows - 1) || y > (columns - 1) || arrrayIndecator[x][y] != 1){
+            return;
+        }
+        if (arrrayIndecator[x][y] == 1){  
             arrrayIndecator[x][y] = 0;                  //checked
-            // pointIndex++;
+            neededPointes[0]++;
 
-           // System.out.println("point index " + pointIndex); 
+            if (x>neededPointes[1]) neededPointes[1]=x;     //x max
+            if (x<neededPointes[2]) neededPointes[2]=x;     //x min
+            if (y>neededPointes[3]) neededPointes[3]=y;     //y max
+            if (y<neededPointes[4]) neededPointes[4]=y;     //y min
 
-            if (x<rows-1)
-                if (arrrayIndecator[x+1][y] == 1){
-                    // System.out.println("x: "+ (x+1));
-                    // System.out.println("y: " + y);
-                     pointIndex++; 
-                    temp = new PlayersFinder().calcCenter(arrrayIndecator, x+1, y, minArea, rows, columns, pointIndex+1);
-                    if ((x+1)>xMax){
-                        xMax = x+1;
-                    }
-                    System.out.println("x max: " + xMax); 
-                    System.out.println("x max number in the player: " + pointIndex); 
-                }
-            if (x>0)        
-                if (arrrayIndecator[x-1][y] == 1){
-                    // System.out.println("x:" + (x-1) );
-                    // System.out.println("y:" + y);
-                    // pointIndex++; 
-                    temp = new PlayersFinder().calcCenter(arrrayIndecator, x-1, y, minArea, rows, columns, pointIndex+1);
-                    if ((x-1)<xMin){
-                        xMin=x-1;
-                        
-                    }
-                    System.out.println("x min: " + xMin); 
-                    System.out.println("x min number in the player: " + pointIndex); 
-                }
-            if (y<columns-1)
-                if (arrrayIndecator[x][y+1] == 1){
-                    // System.out.println("x:"+ x);
-                    // System.out.println("y:" + (y+1));
-                    // pointIndex++; 
-                    temp = new PlayersFinder().calcCenter(arrrayIndecator,x,y+1,minArea, rows, columns, pointIndex+1);
-                    if ((y-1)<yMin){
-                        yMin=y-1;
-                        
-                    }
-                    System.out.println("y min :" + yMin); 
-                    System.out.println("y min number in the player: " + pointIndex); 
-                }
-            if (y>0)
-                if (arrrayIndecator[x][y-1] == 1){
-                    // System.out.println("x:"+ x);
-                    // System.out.println("y:" + (y-1));
-                    // pointIndex++; 
-                    temp = new PlayersFinder().calcCenter(arrrayIndecator,x,y-1,minArea, rows, columns, pointIndex+1);
-                    if ((y+1)>yMax){
-                        yMax =y+1;
-                    
-                    }
-                    System.out.println("y max :" + yMax); 
-                    System.out.println("y max number in the player: " + pointIndex); 
-                }
+            neededPointes[5]=neededPointes[1]+neededPointes[2]+1;   //x center
+            neededPointes[6]=neededPointes[3]+neededPointes[4]+1;   //y center
 
-            //   System.out.println("temp in the function:" + temp);
+            System.out.println("points in if "); 
+            new PlayersFinder().printInt1DArray(neededPointes);
+
+            DFS_to_calc_center(arrrayIndecator, x+1, y  , rows, columns, neededPointes);
+            DFS_to_calc_center(arrrayIndecator, x-1, y  , rows, columns, neededPointes);
+            DFS_to_calc_center(arrrayIndecator, x  , y+1, rows, columns, neededPointes);
+            DFS_to_calc_center(arrrayIndecator, x  , y-1, rows, columns, neededPointes);
+
             System.out.printf("done checking all adjacents for point x=%d , y=%d",x,y);
             System.out.println("");
-            System.out.printf("and this is the pixile number %d in the current player:" , pointIndex);
-           
-            // // System.out.println(" all centers array" + pointIndex); 
-            // System.out.println("all temp :");
-            // for(int i=0; i<pointIndex; i++){
-            //     System.out.print(temp[i]+" ");
-            // }
-            // System.out.println("");
+        }
 
-        }
-        System.out.println("");
-        System.out.printf("This pixile x=%d y=%d it self is done checking",x,y );
-        System.out.println("");
-        // System.out.println("temp we collected :");
-        // for(int i=0; i<pointIndex; i++){
-        //     System.out.print(temp[i]+" ");
-        // }
-        // System.out.println("");
-        System.out.printf("xmax=%d xmin=%d ymax=%d ymin=%d",xMax,xMin,yMax,yMin );
-        System.out.println("");
-        System.out.println("point index variable to succes the condition :" + pointIndex); 
-        if ( (pointIndex*4) < minArea ){
-            return null;
-        }
-        else {
-            center.setLocation((xMax-xMin+1), (yMax-yMin+1)); 
-            System.out.println("center befor return:" + center); 
-        }
-        return center;
-    }
-    
-    public static void main(String[] args) {
+        System.out.println("points out if "); 
+        new PlayersFinder().printInt1DArray(neededPointes);
         
+    }
+
+    public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);                    //open scanner
 
-        int rows =  sc.nextInt();
+        int rows = sc.nextInt();
         int columns = sc.nextInt();
 
         sc.nextLine();                                           //wait for new line input without 'enter key'
@@ -166,8 +105,7 @@ public class PlayersFinder implements IPlayersFinder{
 
         System.out.println(rows + " " + columns + " " + threshold + " " + minArea);  //debug
         
-        sc.close();
-
+        sc.close();             //input done
 
         String s = "";
         for (String n:Sphoto)
@@ -179,7 +117,8 @@ public class PlayersFinder implements IPlayersFinder{
         System.out.println(s);
 
         int c=0;
-        int[][] arrrayIndecator = new int[rows][columns];  
+        int[][] arrrayIndecator = new int[rows][columns]; 
+        int[][] backupIndecators = new int[rows][columns]; 
         char[][] char2DPhoto = new char[rows][columns] ;
 
         System.out.println("");
@@ -191,69 +130,61 @@ public class PlayersFinder implements IPlayersFinder{
                 char2DPhoto[i][j]=Cphoto[c];            // crreating 2d photo of characters
                 if (char2DPhoto[i][j] == threshold) // crreating indecator array
                     arrrayIndecator[i][j] = 1; 
-                
+                    backupIndecators[i][j] = 1;
                 c++;
             }
         }
         new PlayersFinder().printChar2DArray(char2DPhoto, rows, columns);
         new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
         
-        c=0;
-        int pointIndex=1;
-        Point[] temp = new Point[50];          //array of type Point
+        c=0; 
+        // Point center = new Point();          //array of type Point
+        int[] centers = new int[10]; 
+        // ArrayList<List<Integer>> group = new ArrayList<List<Integer>>();
+        // group.add(Arrays.asList(1, 2, 3));
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++){         
                 if (arrrayIndecator[i][j] == 1){
-                    System.out.println(""); System.out.println(""); System.out.println("");
-                    System.out.printf("This is call number %d at ",c );
-                    System.out.printf("start point x=%d , y=%d",i,j);
 
-                    temp[c] = new PlayersFinder().calcCenter(arrrayIndecator, i, j, threshold, rows, columns, pointIndex);  
-                }   
-                        
-                c++;        
+                    int neededPointes[]={0,i,i,j,j,i,j,minArea};
+                     //{counter,x max, x min, y max, y min, x center, y center,minimum area}
+
+                    new PlayersFinder().DFS_to_calc_center(arrrayIndecator,  i, j,rows,columns,neededPointes);
+                    System.out.println("get center indecators ");
+                    new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
+                    System.out.println("check area indecators ");
+                    new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
+                    System.out.printf("after return number %d : ",c+1);
+                    new PlayersFinder().printInt1DArray(neededPointes);
+
+                    if (neededPointes[0]*4>=neededPointes[7]){
+
+                        centers[c]=neededPointes[6];
+                        centers[c+1]= neededPointes[5];
+                        // System.out.println("");
+                        // System.out.println("center"+center);
+                        c=c+2; 
+                    }
+                    else{
+                        System.out.println("this is not a valid player"); 
+                    }
+                    System.out.println("centers array");
+                    for(int k=0; k<centers.length; k++){
+                            System.out.print(centers[k]+" ");
+                    }
+                }         
             }
         }
+
         System.out.println(""); System.out.println(""); System.out.println("");
         System.out.println("Here we end getting centers and prepare to print");
         System.out.println("the desired output of centers :");
         for(int i=0; i<c; i++){
-            System.out.print(temp[i]+" ");
+            System.out.print(centers[i]+" ");
         }
         System.out.println("");
-
-      //  Arrays.sort(temp);
-      //  System.out.println(temp);
-
     }
 }
 
 
-// //
-// 6, 8         rows,cols
-// 33JUBU33
-// 3U3O4433
-// O33P44NB
-// PO3NSDP3
-// VNDSD333
-// OINFD33X
-// 3            color
-// 16           threshold
-// //
-
-    //public void getInputInt();
-  // java.awt.Point[] findPlayers(String[] photo, int team, int threshold);
-    /**
-     * Search for players locations at the given photo
-     * param photo
-     *     Two dimension array of photo contents
-     *     Will contain between 1 and 50 elements, inclusive
-     * param team
-     *     Identifier of the team
-     * param threshold
-     *     Minimum area for an element
-     *     Will be between 1 and 10000, inclusive
-     * return
-     *     Array of players locations of the given team
-     */
    
