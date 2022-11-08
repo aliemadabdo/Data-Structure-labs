@@ -1,9 +1,11 @@
 import java.io.*;
 import java.util.*;
+import java.util.List;
 import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 import java.awt.*;
+import java.util.ArrayList.*;
 
 
 interface IPlayersFinder {
@@ -45,9 +47,9 @@ public class PlayersFinder implements IPlayersFinder{
     }
     public void DFS_to_calc_center (int[][] arrrayIndecator, int x, int y,int rows,int columns,int[] neededPointes){
                                 
-        System.out.println(" "); 
-        System.out.printf("for elemnt of index x=%d and y=%d ", x , y); 
-        System.out.println(" "); 
+        // System.out.println(" "); 
+        // System.out.printf("for elemnt of index x=%d and y=%d ", x , y); 
+        // System.out.println(" "); 
 
         if ( x < 0 || y < 0 || x > (rows - 1) || y > (columns - 1) || arrrayIndecator[x][y] != 1){
             return;
@@ -64,20 +66,20 @@ public class PlayersFinder implements IPlayersFinder{
             neededPointes[5]=neededPointes[1]+neededPointes[2]+1;   //x center
             neededPointes[6]=neededPointes[3]+neededPointes[4]+1;   //y center
 
-            System.out.println("points in if "); 
-            new PlayersFinder().printInt1DArray(neededPointes);
+            // System.out.println("points in if "); 
+            // new PlayersFinder().printInt1DArray(neededPointes);
 
             DFS_to_calc_center(arrrayIndecator, x+1, y  , rows, columns, neededPointes);
             DFS_to_calc_center(arrrayIndecator, x-1, y  , rows, columns, neededPointes);
             DFS_to_calc_center(arrrayIndecator, x  , y+1, rows, columns, neededPointes);
             DFS_to_calc_center(arrrayIndecator, x  , y-1, rows, columns, neededPointes);
 
-            System.out.printf("done checking all adjacents for point x=%d , y=%d",x,y);
-            System.out.println("");
+            // System.out.printf("done checking all adjacents for point x=%d , y=%d",x,y);
+            // System.out.println("");
         }
 
-        System.out.println("points out if "); 
-        new PlayersFinder().printInt1DArray(neededPointes);
+        // System.out.println("points out if "); 
+        // new PlayersFinder().printInt1DArray(neededPointes);
         
     }
 
@@ -85,45 +87,54 @@ public class PlayersFinder implements IPlayersFinder{
 
         Scanner sc = new Scanner(System.in);                    //open scanner
 
-        int rows = sc.nextInt();
-        int columns = sc.nextInt();
+        String dim = sc.nextLine();
+        String[] sos = dim.split(", ");     
+       
+        int rows = Integer.parseInt(sos[0]);
+        int columns = Integer.parseInt(sos[1]);
+        
 
-        sc.nextLine();                                           //wait for new line input without 'enter key'
+       // sc.nextLine();                                           //wait for new line input without 'enter key'
         String[] Sphoto = new String[columns];                  //input the photo
         for (int i=0 ; i<rows ; i++){
             Sphoto[i] = sc.nextLine();
         }
 
-        System.out.println("");
-        System.out.println("photo 1d values:");
-        for (int i=0 ; i<rows ; i++){                   //debug
-            System.out.println(Sphoto[i]);
-        }
+        // System.out.println("");
+        // System.out.println("photo 1d values:");
+        // for (int i=0 ; i<rows ; i++){                   //debug
+        //     System.out.println(Sphoto[i]);
+        // }
+
+        // String thr = sc.nextLine();
+        // String minA = sc.nextLine();
+        // int threshold = Integer.parseInt(thr);
+        // int minArea = Integer.parseInt(minA);
 
         char threshold = sc.next().charAt(0);
         int minArea = sc.nextInt();
 
-        System.out.println(rows + " " + columns + " " + threshold + " " + minArea);  //debug
+        //System.out.println(rows + " " + columns + " " + threshold + " " + minArea);  //debug
         
-        sc.close();             //input done
-
+        sc.close();             
+//====================================input done===============================
         String s = "";
         for (String n:Sphoto)
             s+= n;
         char[] Cphoto = s.toCharArray();  //convert string array to array of charactars 1D
        
-        System.out.println("");
-        System.out.println("S value:");
-        System.out.println(s);
+        // System.out.println("");
+        // System.out.println("S value:");
+        // System.out.println(s);
 
         int c=0;
         int[][] arrrayIndecator = new int[rows][columns]; 
         int[][] backupIndecators = new int[rows][columns]; 
         char[][] char2DPhoto = new char[rows][columns] ;
 
-        System.out.println("");
-        System.out.println("TH:");
-        System.out.println(threshold);
+        // System.out.println("");
+        // System.out.println("TH:");
+        // System.out.println(threshold);
 
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++){
@@ -134,55 +145,48 @@ public class PlayersFinder implements IPlayersFinder{
                 c++;
             }
         }
-        new PlayersFinder().printChar2DArray(char2DPhoto, rows, columns);
-        new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
-        
+        // new PlayersFinder().printChar2DArray(char2DPhoto, rows, columns);
+        // new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
+//====================================preparation done======================================
         c=0; 
         // Point center = new Point();          //array of type Point
-        int[] centers = new int[10]; 
-        // ArrayList<List<Integer>> group = new ArrayList<List<Integer>>();
-        // group.add(Arrays.asList(1, 2, 3));
+        // ArrayList<Integer> c e n t e r s = new ArrayList<>();
+       
+ 
+        ArrayList<ArrayList<Integer>> centers = new ArrayList<ArrayList<Integer>>();
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++){         
                 if (arrrayIndecator[i][j] == 1){
-
+                    
                     int neededPointes[]={0,i,i,j,j,i,j,minArea};
                      //{counter,x max, x min, y max, y min, x center, y center,minimum area}
-
                     new PlayersFinder().DFS_to_calc_center(arrrayIndecator,  i, j,rows,columns,neededPointes);
-                    System.out.println("get center indecators ");
-                    new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
-                    System.out.println("check area indecators ");
-                    new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
-                    System.out.printf("after return number %d : ",c+1);
-                    new PlayersFinder().printInt1DArray(neededPointes);
-
                     if (neededPointes[0]*4>=neededPointes[7]){
-
-                        centers[c]=neededPointes[6];
-                        centers[c+1]= neededPointes[5];
-                        // System.out.println("");
-                        // System.out.println("center"+center);
-                        c=c+2; 
-                    }
-                    else{
-                        System.out.println("this is not a valid player"); 
-                    }
-                    System.out.println("centers array");
-                    for(int k=0; k<centers.length; k++){
-                            System.out.print(centers[k]+" ");
+                         centers.add( new ArrayList<Integer>(Arrays.asList(neededPointes[6],neededPointes[5])));
                     }
                 }         
             }
         }
+//====================================logic done======================================
 
-        System.out.println(""); System.out.println(""); System.out.println("");
-        System.out.println("Here we end getting centers and prepare to print");
-        System.out.println("the desired output of centers :");
-        for(int i=0; i<c; i++){
-            System.out.print(centers[i]+" ");
+        Collections.sort(centers, new Comparator<ArrayList<Integer>>() {    
+           // @Override
+            public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
+                return o1.get(0).compareTo(o2.get(0));
+            }               
+        });
+        System.out.printf("[");
+        for(int i = 0; i < centers.size(); i++){
+                System.out.printf("(%d, %d)",centers.get(i).get(0),centers.get(i).get(1));
+                if(i != centers.size() - 1)
+                     System.out.print(", ");
         }
-        System.out.println("");
+        System.out.printf("]");
+ 
+//====================================output done======================================
+
+
+
     }
 }
 

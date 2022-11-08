@@ -1,4 +1,6 @@
-
+ // ArrayList<Integer> centers = new ArrayList<Integer>();
+centers.add(neededPointes[6]);
+centers.add(neededPointes[5]);
 
 // //
 // 6, 8         rows,cols
@@ -150,3 +152,19 @@
     // //     }
     // //     return numberOfCells;
     // // }
+
+           // System.out.println(centers.size());
+       // centers.sort((o1, o2));
+
+        //System.out.print(centers);
+        // Collections.sort(centers);
+        // System.out.print(centers);
+        // System.out.println(""); System.out.println(""); System.out.println("");
+        // System.out.println("Here we end getting centers and prepare to print");
+        // System.out.println("the desired output of centers :");
+        // for(int i=0; i<c; i++){
+        //     System.out.print(centers[i]+" ");
+        // }
+       // System.out.printf("[(%d, %d), (%d, %d), (%d, %d)]",
+        //centers.get(1),centers.get(2),centers.get(4),centers.get(3),centers.get(5),centers.get(0));
+        // System.out.println("");
