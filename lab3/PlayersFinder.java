@@ -1,12 +1,4 @@
-import java.io.*;
 import java.util.*;
-import java.util.List;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-import java.awt.*;
-import java.util.ArrayList.*;
-
 
 interface IPlayersFinder {
 
@@ -14,7 +6,6 @@ interface IPlayersFinder {
     public void printInt2DArray(int[][] printArray,int rows,int columns);
     public void printChar2DArray(char[][] printArray,int rows,int columns);
     public void DFS_to_calc_center (int[][] arrrayIndecator, int x, int y,int rows, int columns, int[] neededPointes);
-    //public int DFS_to_check_area (int[][] arrrayIndecator, int i, int j);
 }
 
 
@@ -93,8 +84,6 @@ public class PlayersFinder implements IPlayersFinder{
         int rows = Integer.parseInt(sos[0]);
         int columns = Integer.parseInt(sos[1]);
         
-
-       // sc.nextLine();                                           //wait for new line input without 'enter key'
         String[] Sphoto = new String[columns];                  //input the photo
         for (int i=0 ; i<rows ; i++){
             Sphoto[i] = sc.nextLine();
@@ -105,11 +94,6 @@ public class PlayersFinder implements IPlayersFinder{
         // for (int i=0 ; i<rows ; i++){                   //debug
         //     System.out.println(Sphoto[i]);
         // }
-
-        // String thr = sc.nextLine();
-        // String minA = sc.nextLine();
-        // int threshold = Integer.parseInt(thr);
-        // int minArea = Integer.parseInt(minA);
 
         char threshold = sc.next().charAt(0);
         int minArea = sc.nextInt();
@@ -148,10 +132,7 @@ public class PlayersFinder implements IPlayersFinder{
         // new PlayersFinder().printChar2DArray(char2DPhoto, rows, columns);
         // new PlayersFinder().printInt2DArray(arrrayIndecator, rows, columns);
 //====================================preparation done======================================
-        c=0; 
-        // Point center = new Point();          //array of type Point
-        // ArrayList<Integer> c e n t e r s = new ArrayList<>();
-       
+
  
         ArrayList<ArrayList<Integer>> centers = new ArrayList<ArrayList<Integer>>();
         for(int i=0; i<rows; i++){
@@ -170,7 +151,6 @@ public class PlayersFinder implements IPlayersFinder{
 //====================================logic done======================================
 
         Collections.sort(centers, new Comparator<ArrayList<Integer>>() {    
-           // @Override
             public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
                 return o1.get(0).compareTo(o2.get(0));
             }               
@@ -189,6 +169,5 @@ public class PlayersFinder implements IPlayersFinder{
 
     }
 }
-
 
    
