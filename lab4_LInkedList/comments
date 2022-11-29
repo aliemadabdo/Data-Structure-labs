@@ -1,140 +1,155 @@
-/**
-* Inserts a specified element at the specified position in the list.
-* @param index
-* @param element
-*/
-public void add(int index, Object element);
-/**
-* Inserts the specified element at the end of the list.
-* @param element
-*/
-public void add(Object element);
-/**
-* @param index
-* @return the element at the specified position in this list.
-*/
-public Object get(int index);
-
-/**
-* Replaces the element at the specified position in this list with the
-* specified element.
-* @param index
-* @param element
-*/
-public void set(int index, Object element);
-/**
-* Removes all of the elements from this list.
-*/
-public void clear();
-/**
-* @return true if this list contains no elements.
-*/
-public boolean isEmpty();
-/**
-* Removes the element at the specified position in this list.
-* @param index
-*/
-public void remove(int index);
-/**
-* @return the number of elements in this list.
-*/
-public int size();
-/**
-* @param fromIndex
-* @param toIndex
-* @return a view of the portion of this list between the specified fromIndex and toIndex, inclusively.
-*/
-public ILinkedList sublist(int fromIndex, int toIndex);
-/**
-* @param o
-* @return true if this list contains an element with the same value as the specified element.
-*/
-public boolean contains(Object o);
-
-
-   //public SingleLinkedList list1,list2;
-
-    // Scanner sc = new Scanner(System.in);
-
-    //construtor
-    
-    // public void setLink(SingleLinkedList link) {
-    //     this.link = link;
-    // }
-
-    // SingleLinkedList insertAtEnd(SingleLinkedList node){
-    //     SingleLinkedList head = this;
-    //     int size = head.length();
-
-    //     SingleLinkedList temp = this;
-    //     while(temp.link!=null){
-    //         temp = temp.getNextNode();
-    //     }
-    //     temp.setLink(node);
-    //     return head;
-    // }
-// 
-
+// /**
+// * Inserts a specified element at the specified position in the list.
+// * @param index
+// * @param element
+// */
 // public void add(int index, Object element);
+// /**
+// * Inserts the specified element at the end of the list.
+// * @param element
+// */
+// public void add(Object element);
+// /**
+// * @param index
+// * @return the element at the specified position in this list.
+// */
 // public Object get(int index);
+
+// /**
+// * Replaces the element at the specified position in this list with the
+// * specified element.
+// * @param index
+// * @param element
+// */
 // public void set(int index, Object element);
+// /**
+// * Removes all of the elements from this list.
+// */
 // public void clear();
+// /**
+// * @return true if this list contains no elements.
+// */
 // public boolean isEmpty();
+// /**
+// * Removes the element at the specified position in this list.
+// * @param index
+// */
 // public void remove(int index);
+// /**
+// * @return the number of elements in this list.
+// */
 // public int size();
+// /**
+// * @param fromIndex
+// * @param toIndex
+// * @return a view of the portion of this list between the specified fromIndex and toIndex, inclusively.
+// */
 // public ILinkedList sublist(int fromIndex, int toIndex);
+// /**
+// * @param o
+// * @return true if this list contains an element with the same value as the specified element.
+// */
 // public boolean contains(Object o);
 
-	/* Implement your linked list class here*/
+//    // public int data;
+//     // public SingleLinkedList next;
 
-    // String operation[] = new String[]
-        // {"add", "addToIndex", "get", "set", "clear", "isEmpty", "remove", "size" "sublist", "contains"};
+//     // SingleLinkedList(int data){
+//     //     this.data = data;
+//     //     this.next = null;
+//     // }
 
-//  case "addToIndex" :
-//                 index = Integer.parseInt(sc.nextLine());
-//                 element = Integer.parseInt(sc.nextLine());
-//                 add(index,element);
-//                 System.out.print(inputList); 
-//             break;
-//             case "get"        :
-//                 index = Integer.parseInt(sc.nextLine()); 
-//                 System.out.print(get(index)); 
-//             break;
-//             case "set"        : 
-//                 index = Integer.parseInt(sc.nextLine());
-//                 element = Integer.parseInt(sc.nextLine());
-//                 set(index,element);
-//                 System.out.print(inputList);  
-//             break;
-//             case "clear"      : 
-//                 clear();
-//                 System.out.print(inputList);  
-//             break;
-//             case "isEmpty"    :
-//                 System.out.print(isEmpty()); 
-//             break;
-//             case "remove"     :
-//                 index = Integer.parseInt(sc.nextLine()); 
-//                 remove(index);
-//                 System.out.print(inputList);  
-//             break;
-//             case "size"       : 
-//                 System.out.print(size());
-//             break;
-//             case "sublist"    :
-//                 fromIndex = Integer.parseInt(sc.nextLine());
-//                 toIndex = Integer.parseInt(sc.nextLine());
-//                 result[]=sublist(fromIndex,toIndex);
-//                 System.out.print(result); 
-//             break;
-//             case "contains"   : 
-//                 System.out.print(contains(o)); 
-//             break;
+//    //public SingleLinkedList list1,list2;
+
+//     // Scanner sc = new Scanner(System.in);
+
+//     //construtor
+    
+//     // public void setLink(SingleLinkedList link) {
+//     //     this.link = link;
+//     // }
+
+//     // SingleLinkedList insertAtEnd(SingleLinkedList node){
+//     //     SingleLinkedList head = this;
+//     //     int size = head.length();
+
+//     //     SingleLinkedList temp = this;
+//     //     while(temp.link!=null){
+//     //         temp = temp.getNextNode();
+//     //     }
+//     //     temp.setLink(node);
+//     //     return head;
+//     // }
+// // 
+
+// // public void add(int index, Object element);
+// // public Object get(int index);
+// // public void set(int index, Object element);
+// // public void clear();
+// // public boolean isEmpty();
+// // public void remove(int index);
+// // public int size();
+// // public ILinkedList sublist(int fromIndex, int toIndex);
+// // public boolean contains(Object o);
+
+// 	/* Implement your linked list class here*/
+
+//     // String operation[] = new String[]
+//         // {"add", "addToIndex", "get", "set", "clear", "isEmpty", "remove", "size" "sublist", "contains"};
+
+// //  case "addToIndex" :
+// //                 index = Integer.parseInt(sc.nextLine());
+// //                 element = Integer.parseInt(sc.nextLine());
+// //                 add(index,element);
+// //                 System.out.print(inputList); 
+// //             break;
+// //             case "get"        :
+// //                 index = Integer.parseInt(sc.nextLine()); 
+// //                 System.out.print(get(index)); 
+// //             break;
+// //             case "set"        : 
+// //                 index = Integer.parseInt(sc.nextLine());
+// //                 element = Integer.parseInt(sc.nextLine());
+// //                 set(index,element);
+// //                 System.out.print(inputList);  
+// //             break;
+// //             case "clear"      : 
+// //                 clear();
+// //                 System.out.print(inputList);  
+// //             break;
+// //             case "isEmpty"    :
+// //                 System.out.print(isEmpty()); 
+// //             break;
+// //             case "remove"     :
+// //                 index = Integer.parseInt(sc.nextLine()); 
+// //                 remove(index);
+// //                 System.out.print(inputList);  
+// //             break;
+// //             case "size"       : 
+// //                 System.out.print(size());
+// //             break;
+// //             case "sublist"    :
+// //                 fromIndex = Integer.parseInt(sc.nextLine());
+// //                 toIndex = Integer.parseInt(sc.nextLine());
+// //                 result[]=sublist(fromIndex,toIndex);
+// //                 System.out.print(result); 
+// //             break;
+// //             case "contains"   : 
+// //                 System.out.print(contains(o)); 
+// //             break;
 
                 
-                // System.out.println(afterNode);
-                // System.out.println(tempNode);
-                // System.out.println(tempNode.nextNode);
-                // System.out.println(node);
-                // // System.out.println(node.nextNode); 
+//                 // System.out.println(afterNode);
+//                 // System.out.println(tempNode);
+//                 // System.out.println(tempNode.nextNode);
+//                 // System.out.println(node);
+//                 // // System.out.println(node.nextNode); 
                 
+//  // public void checkError(int index){
+//     //     try {
+//     //         index
+//     //     } 
+//     //     catch (Exception e) {
+//     //         //TODO: handle exception
+//     //         System.out.print("runtime error");
+//     // }
