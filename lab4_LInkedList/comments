@@ -90,43 +90,51 @@ public boolean contains(Object o);
     // String operation[] = new String[]
         // {"add", "addToIndex", "get", "set", "clear", "isEmpty", "remove", "size" "sublist", "contains"};
 
- // case "addToIndex" :
-            //     index = Integer.parseInt(sc.nextLine());
-            //     element = Integer.parseInt(sc.nextLine());
-            //     add(index,element);
-            //     System.out.print(inputList); 
-            // break;
-            // case "get"        :
-            //     index = Integer.parseInt(sc.nextLine()); 
-            //     System.out.print(get(index)); 
-            // break;
-            // case "set"        : 
-            //     index = Integer.parseInt(sc.nextLine());
-            //     element = Integer.parseInt(sc.nextLine());
-            //     set(index,element);
-            //     System.out.print(inputList);  
-            // break;
-            // case "clear"      : 
-            //     clear();
-            //     System.out.print(inputList);  
-            // break;
-            // case "isEmpty"    :
-            //     System.out.print(isEmpty()); 
-            // break;
-            // case "remove"     :
-            //     index = Integer.parseInt(sc.nextLine()); 
-            //     remove(index);
-            //     System.out.print(inputList);  
-            // break;
-            // case "size"       : 
-            //     System.out.print(size());
-            // break;
-            // case "sublist"    :
-            //     fromIndex = Integer.parseInt(sc.nextLine());
-            //     toIndex = Integer.parseInt(sc.nextLine());
-            //     result[]=sublist(fromIndex,toIndex);
-            //     System.out.print(result); 
-            // break;
-            // case "contains"   : 
-            //     System.out.print(contains(o)); 
-            // break;
+//  case "addToIndex" :
+//                 index = Integer.parseInt(sc.nextLine());
+//                 element = Integer.parseInt(sc.nextLine());
+//                 add(index,element);
+//                 System.out.print(inputList); 
+//             break;
+//             case "get"        :
+//                 index = Integer.parseInt(sc.nextLine()); 
+//                 System.out.print(get(index)); 
+//             break;
+//             case "set"        : 
+//                 index = Integer.parseInt(sc.nextLine());
+//                 element = Integer.parseInt(sc.nextLine());
+//                 set(index,element);
+//                 System.out.print(inputList);  
+//             break;
+//             case "clear"      : 
+//                 clear();
+//                 System.out.print(inputList);  
+//             break;
+//             case "isEmpty"    :
+//                 System.out.print(isEmpty()); 
+//             break;
+//             case "remove"     :
+//                 index = Integer.parseInt(sc.nextLine()); 
+//                 remove(index);
+//                 System.out.print(inputList);  
+//             break;
+//             case "size"       : 
+//                 System.out.print(size());
+//             break;
+//             case "sublist"    :
+//                 fromIndex = Integer.parseInt(sc.nextLine());
+//                 toIndex = Integer.parseInt(sc.nextLine());
+//                 result[]=sublist(fromIndex,toIndex);
+//                 System.out.print(result); 
+//             break;
+//             case "contains"   : 
+//                 System.out.print(contains(o)); 
+//             break;
+
+                
+                // System.out.println(afterNode);
+                // System.out.println(tempNode);
+                // System.out.println(tempNode.nextNode);
+                // System.out.println(node);
+                // // System.out.println(node.nextNode); 
+                
