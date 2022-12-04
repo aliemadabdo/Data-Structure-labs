@@ -153,3 +153,25 @@
 //     //         //TODO: handle exception
 //     //         System.out.print("runtime error");
 //     // }
+
+ // public void printInterface (ILinkedList mySubSingleLinkedList){
+    //     int i =0;
+
+    //     if (head==null){
+    //         System.out.print("[]");
+    //     }
+    //     else {
+    //         Node tempNode = head;               //we didnt loop with head to remain it at the start
+
+    //         System.out.print("[");
+    //         while(tempNode.nextNode!=null) {
+    //             System.out.print(tempNode.element);
+    //             if (i<size)
+    //                 System.out.print(", ");
+    //             tempNode = tempNode.nextNode;
+    //             i++;
+    //         }
+    //         System.out.print(tempNode.element);
+    //         System.out.print("]");
+    //     }
+    // }

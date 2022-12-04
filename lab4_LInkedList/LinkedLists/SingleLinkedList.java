@@ -1,40 +1,33 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+package LinkedLists;
 
-import javax.xml.transform.Source;
+import java.util.*;
 
 interface ILinkedList {
 
-public void        add      (Object element                    ); 
-public void        add      (int    index    ,  Object element );
-public Object      get      (int    index                      );
-public void        set      (int    index    ,  Object element );
-public void        clear    (                                  );
-public boolean     isEmpty  (                                  );
-public void        remove   (int    index                      );
-public int         size     (                                  );
-public ILinkedList sublist  (int    fromIndex , int    toIndex );
-public boolean     contains (Object o                          );
+    public void        add      (Object element                    ); 
+    public void        add      (int    index    ,  Object element );
+    public Object      get      (int    index                      );
+    public void        set      (int    index    ,  Object element );
+    public void        clear    (                                  );
+    public boolean     isEmpty  (                                  );
+    public void        remove   (int    index                      );
+    public int         size     (                                  );
+    public ILinkedList sublist  (int    fromIndex , int    toIndex );
+    public boolean     contains (Object o                          );
 }
 
-
-//abstract data type node 
 class Node{
     Object element;
     Node nextNode;      //recursevily
 
-    // public Node(Object data) {
-    //     this.data=data;
+    // public Node() {
+    //     this.element=0;
     // }
 }
-
 public class SingleLinkedList implements ILinkedList {
 
-    int size =0;
-    Node head;
+    public int size = 0;
+    public Node head;
 
     public void add(Object element){
 
@@ -191,28 +184,8 @@ public class SingleLinkedList implements ILinkedList {
         }
     }
 
-    // public void printInterface (ILinkedList mySubSingleLinkedList){
-    //     int i =0;
-
-    //     if (head==null){
-    //         System.out.print("[]");
-    //     }
-    //     else {
-    //         Node tempNode = head;               //we didnt loop with head to remain it at the start
-
-    //         System.out.print("[");
-    //         while(tempNode.nextNode!=null) {
-    //             System.out.print(tempNode.element);
-    //             if (i<size)
-    //                 System.out.print(", ");
-    //             tempNode = tempNode.nextNode;
-    //             i++;
-    //         }
-    //         System.out.print(tempNode.element);
-    //         System.out.print("]");
-    //     }
-    // }
-
+}
+class hamo {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -307,7 +280,8 @@ public class SingleLinkedList implements ILinkedList {
                 mySingleLinkedList.printTorF(mySingleLinkedList.contains(element));  
             break;
         }
-        //sc.close();
+        sc.close();
     }
 }
 
+//End

@@ -1,9 +1,10 @@
+package polynomial;
 import java.rmi.RemoteException;
 import java.util.*;
 import java.io.IOException;
 
 
-public class PolynomialSolver {
+public class PolynomialSolverX {
 
     class SingleLinkedList  {
         Entry first;
@@ -57,9 +58,9 @@ public class PolynomialSolver {
             }
         }
 
-        public boolean isEmpty(){return size()==0;}
-
-
+        public boolean isEmpty(){
+            return size()==0;
+        }
 
         public int size() {
             return size;
@@ -271,7 +272,7 @@ public class PolynomialSolver {
         String command;
         Scanner sc = new Scanner(System.in);
         while(sc.hasNext()){
-
+        
             try {
                 command =sc.nextLine();
             }

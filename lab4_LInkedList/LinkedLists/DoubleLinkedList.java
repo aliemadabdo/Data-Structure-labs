@@ -1,3 +1,7 @@
+
+// >>>>>>>Modefing tail is needed<<<<<<<<<<<
+
+package LinkedLists;
 import java.io.*; 
 import java.util.*; 
 import java.text.*; 
@@ -36,14 +40,15 @@ public class DoubleLinkedList implements ILinkedList {
  
     public void add(Object element){ 
  
-        Node newNode = new Node(); 
+        Node newNode = new Node();
+        newNode.element=element; 
         if(head == null){ 
             head = tail = newNode; 
             head.prevNode = null; 
             tail.nextNode = null; 
         } 
         else{ 
-            tail.nextNode = newNode; 
+            tail.nextNode = newNode; //tail = head+sawp
             newNode.prevNode = tail; 
             tail = newNode; 
             tail.nextNode = null; 
@@ -127,7 +132,7 @@ public class DoubleLinkedList implements ILinkedList {
  
     public ILinkedList sublist(int fromIndex, int toIndex){ 
         // Node subHead; 
-        SingleLinkedList  mySubSingleLinkedList  = new SingleLinkedList(); 
+        DoubleLinkedList  mySubDoubleLinkedList  = new DoubleLinkedList(); 
         Node tempNode = head; 
          
         int i = 0; 
@@ -137,12 +142,12 @@ public class DoubleLinkedList implements ILinkedList {
         } 
         head = tempNode; 
         while(i<toIndex){ 
-            mySubSingleLinkedList.add(tempNode); 
+            mySubDoubleLinkedList.add(tempNode); 
             tempNode = tempNode.nextNode; 
             i++;   
         } 
         tempNode.nextNode=null; 
-        return mySubSingleLinkedList; 
+        return mySubDoubleLinkedList; 
     } 
  
     public boolean contains(Object o){ 
@@ -187,7 +192,7 @@ public class DoubleLinkedList implements ILinkedList {
         } 
     } 
  
-    // public void printInterface (ILinkedList mySubSingleLinkedList){ 
+    // public void printInterface (ILinkedList mySubDoubleLinkedList){ 
     //     int i =0; 
  
     //     if (head==null){ 
@@ -216,12 +221,12 @@ public class DoubleLinkedList implements ILinkedList {
         String[] s = sin.split(", "); 
         //To take input array with format : [1,2,3,5] 
  
-        SingleLinkedList  mySingleLinkedList  = new SingleLinkedList(); 
+        DoubleLinkedList  myDoubleLinkedList  = new DoubleLinkedList(); 
         if (s.length == 1 && s[0].isEmpty()) 
-            mySingleLinkedList = new SingleLinkedList(); 
+            myDoubleLinkedList = new DoubleLinkedList(); 
         else { 
             for(int i = 0; i < s.length; ++i) 
-                mySingleLinkedList.add(Integer.parseInt(s[i])); // this class-Integer-provide many methodes for integer convertion 
+                myDoubleLinkedList.add(Integer.parseInt(s[i])); // this class-Integer-provide many methodes for integer convertion 
         } 
              
         String inputOperation= sc.nextLine(); 
@@ -230,79 +235,79 @@ public class DoubleLinkedList implements ILinkedList {
         switch(inputOperation){ 
             case "add"        :  
                 element = Integer.parseInt(sc.nextLine()); 
-                mySingleLinkedList.add(element);  
-                mySingleLinkedList.printSinglell();  
+                myDoubleLinkedList.add(element);  
+                myDoubleLinkedList.printSinglell();  
             break; 
  
             case "addToIndex" : 
                 index = Integer.parseInt(sc.nextLine()); 
                 element = Integer.parseInt(sc.nextLine()); 
-                if (index<0 | index>=mySingleLinkedList.size) 
+                if (index<0 | index>=myDoubleLinkedList.size) 
                     System.out.print("Error"); 
                 else { 
-                    mySingleLinkedList.add(index, element);  
-                    mySingleLinkedList.printSinglell(); 
+                    myDoubleLinkedList.add(index, element);  
+                    myDoubleLinkedList.printSinglell(); 
                 } 
             break; 
  
             case "get"        : 
                 index = Integer.parseInt(sc.nextLine());  
-                if (index<0 | index>=mySingleLinkedList.size) 
+                if (index<0 | index>=myDoubleLinkedList.size) 
                     System.out.print("Error"); 
                 else  
-                    System.out.print(mySingleLinkedList.get(index));  
+                    System.out.print(myDoubleLinkedList.get(index));  
             break; 
  
             case "set"        :  
                 index = Integer.parseInt(sc.nextLine()); 
                 element = Integer.parseInt(sc.nextLine()); 
-                if (index<0 | index>=mySingleLinkedList.size) 
+                if (index<0 | index>=myDoubleLinkedList.size) 
                     System.out.print("Error"); 
                 else { 
-                    mySingleLinkedList.set(index, element);  
-                    mySingleLinkedList.printSinglell(); 
+                    myDoubleLinkedList.set(index, element);  
+                    myDoubleLinkedList.printSinglell(); 
                 } 
             break; 
  
             case "clear"      :  
-                mySingleLinkedList.clear();  
-                mySingleLinkedList.printSinglell();  
+                myDoubleLinkedList.clear();  
+                myDoubleLinkedList.printSinglell();  
             break; 
  
             case "isEmpty"
 
                 : 
-                mySingleLinkedList.printTorF(mySingleLinkedList.isEmpty());  
+                myDoubleLinkedList.printTorF(myDoubleLinkedList.isEmpty());  
             break; 
  
             case "remove"     : 
                 index = Integer.parseInt(sc.nextLine());  
-                if (index<0 | index>=mySingleLinkedList.size) 
+                if (index<0 | index>=myDoubleLinkedList.size) 
                     System.out.print("Error"); 
                 else { 
-                    mySingleLinkedList.remove(index);  
-                    mySingleLinkedList.printSinglell();  
+                    myDoubleLinkedList.remove(index);  
+                    myDoubleLinkedList.printSinglell();  
                 } 
             break; 
  
             case "size"       :  
-                System.out.print(mySingleLinkedList.size());  
+                System.out.print(myDoubleLinkedList.size());  
             break; 
  
             case "sublist"    : 
                 fromIndex = Integer.parseInt(sc.nextLine()); 
                 toIndex = Integer.parseInt(sc.nextLine()); 
-                if ( fromIndex>toIndex | fromIndex<0 | toIndex>=mySingleLinkedList.size ) 
+                if ( fromIndex>toIndex | fromIndex<0 | toIndex>=myDoubleLinkedList.size ) 
                     System.out.print("Error"); 
                 else { 
-                    mySingleLinkedList.sublist(fromIndex, toIndex);  
-                    mySingleLinkedList.printSinglell();  
+                    myDoubleLinkedList.sublist(fromIndex, toIndex);  
+                    myDoubleLinkedList.printSinglell();  
                 } 
             break; 
  
             case "contains"   :  
                 element = Integer.parseInt(sc.nextLine()); 
-                mySingleLinkedList.printTorF(mySingleLinkedList.contains(element));   
+                myDoubleLinkedList.printTorF(myDoubleLinkedList.contains(element));   
             break; 
         } 
         //sc.close(); 

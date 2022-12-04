@@ -1,13 +1,21 @@
-package testcodes;
+// package testcodes;
 
+// import LinkedLists.SingleLinkedList;
+// class Node{
+//     Object element;
+//     Node nextNode;      //recursevily
+
+//     // public Node() {
+//     //     this.element=0;
+//     // }
+// }
 // public class TryCatchTesting {
 //     public static void main (String[] args) {
-//         try {
-//             int x = 1/0;
-//         } 
-//         catch (Exception e) {
-//             //TODO: handle exception
-//             System.out.print("runtime error");
-//         }
+//         SingleLinkedList m = new SingleLinkedList();
+//         m.add(2);
+//         m.add(')');
+//         System.out.println(m.size());
+//         m.printSinglell();
+//         Node node = new Node();
 //     }
 // }
