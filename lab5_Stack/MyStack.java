@@ -1,9 +1,4 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-
 
 class Node{
   Object element;
@@ -13,6 +8,7 @@ class Node{
   //     this.element=0;
   // }
 }
+
  class SingleLinkedList {
 
   public int size = 0;
@@ -182,8 +178,6 @@ interface IStack {
   
   // public int size();
 }
-
-
 public class MyStack implements IStack {
   SingleLinkedList myStack = new SingleLinkedList();
 
@@ -195,13 +189,14 @@ public class MyStack implements IStack {
     Object poppedElement = myStack.get(0);
     myStack.remove(0);
     return poppedElement;
-    
   } //print stack after pop
+
   public Object peek(){     //return the top of the stack
     return myStack.get(0);
   } //print the top element
-  
-  
+}
+
+ class haha{ 
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Scanner sc = new Scanner(System.in);
