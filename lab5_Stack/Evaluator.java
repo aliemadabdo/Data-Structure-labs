@@ -178,17 +178,15 @@ class MyStack {
   }
 
 interface IExpressionEvaluator {
+    
+public int GetOperatorWeight(char op);
 
-// public String getInput();
-/**
-* Takes a symbolic/numeric infix expression as input and converts it to
-* postfix notation. There is no assumption on spaces between terms or the
-* length of the term (e.g., two digits symbolic or numeric term)
-*
-* @param expression infix expression
-* @return postfix expression
-*/
-  
+public Boolean checkHigherPrecedence(char operator1, char operator2);
+
+public Boolean IsOperator(char C);
+
+public Boolean IsOperand(char C);
+
 public String infixToPostfix(String expression);  
 
 // /**
@@ -203,48 +201,105 @@ public String infixToPostfix(String expression);
 
 public class Evaluator implements IExpressionEvaluator {
 
+    public int GetOperatorWeight(char op){
+        int weight = 0;
+        switch (op)
+        {
+        // case ')':
+        //     weight = 1;
+        case '+': case '-':
+            weight = 2;
+        case '*': case '/':
+            weight = 3;
+        case '^':
+            weight = 4;
+        // case '(':
+        //     weight = 5;
+        }
+        return weight;
+    }
+    
+    public Boolean checkHigherPrecedence(char operator1, char operator2){
+        int op1Weight = GetOperatorWeight(operator1);
+        int op2Weight = GetOperatorWeight(operator2);
+
+        return op1Weight > op2Weight ? true : false;
+    }
+        
+    public Boolean IsOperand(char C){
+            if (C == 'a' || C == 'b' || C == 'c') 
+                return true;
+            else
+                return false;
+    }
+
+    public Boolean IsOperator(char C){
+        if (C == '+' || C == '-' || C == '*' || C == '/' || C == '^')
+            return true;
+        else
+            return false;
+        }
+
     public String infixToPostfix(String expression){
         MyStack theStack = new MyStack();
         char[] INPChar = expression.toCharArray();
         char[] copyOfINPChar = new char[INPChar.length];
+        // String[] INPChar = new String[] {expression};  
+        // String[] copyOfINPChar = new String[] {expression};  
         int k = 0;
 
+        // System.out.println("11");
         for (int i=0; i<INPChar.length;i++){
-            if(INPChar[i]!='-' && INPChar[i]!='+' && INPChar[i]!='*' && INPChar[i]!='/' && 
-               INPChar[i]!='(' && INPChar[i]!=')' && INPChar[i]!='^'){
+
+            if(INPChar[i]=='-' && INPChar[i]==INPChar[i+1]){
+                if(i==0 || INPChar[i-1]=='(')
+                    i=i+2;
+                else{
+                    INPChar[i+1]='+';
+                    i++;
+                }
+            }
+
+            //if you are a number
+            // System.out.println("22");
+            if(IsOperand(INPChar[i])){
                 copyOfINPChar[k]=INPChar[i];
                 k++;
-               }
-            else if(theStack.peek()!=null){
-                if (theStack.peek()==")"){
-                    while(theStack.peek()!="("){
+                // System.out.println("1");
+            }
+            
+            //if you are an operante (not the first one)
+            else if (IsOperator(INPChar[i]) && !(theStack.myStack.isEmpty() || checkHigherPrecedence(INPChar[i], (char)theStack.peek()))){
+                // System.out.println("hhhhhhh");
+                
+                
+                    copyOfINPChar[k]= (char)theStack.pop();
+                    theStack.push(INPChar[i]);
+                    k++;
+                
+                
+            }
+            else{
+                if (INPChar[i]==')'){
+                    // System.out.println("55555555");
+                    //theStack.pop();
+                    while (!theStack.myStack.isEmpty() && (char)theStack.peek()!='('){
                         copyOfINPChar[k]= (char)theStack.pop();
                         k++;
                     }
-                        
+                    theStack.pop();
                 }
-                else if((INPChar[i]=='-' || INPChar[i]=='+') && (theStack.peek()=="-" || theStack.peek()=="+" ||
-                theStack.peek()=="*" || theStack.peek()=="/" || theStack.peek()=="^" )){
-                    copyOfINPChar[k]= (char)theStack.pop();
-                    k++;
-                }
-                else if((INPChar[i]=='*' || INPChar[i]=='/') && (theStack.peek()=="*" || 
-                theStack.peek()=="/" || theStack.peek()=="^" )){
-                    copyOfINPChar[i]= (char)theStack.pop();
-                    k++;
-
-                }
-                else if(INPChar[i]=='^' && theStack.peek()=="^") {
-                    copyOfINPChar[i]= (char)theStack.pop();
-                    k++;
-
-                }
-                theStack.push(INPChar[i]);
+                else
+                    theStack.push(INPChar[i]);
             }
+               
         }
+        
         while (!theStack.myStack.isEmpty()){
             copyOfINPChar[k]= (char)theStack.pop();
             k++;
+            // System.out.println("33");
+
         }
 
         String str = String. valueOf(copyOfINPChar);
@@ -268,7 +323,7 @@ public class Evaluator implements IExpressionEvaluator {
         // System.out.println(stringA);
         // System.out.println(stringB);
         // System.out.println(stringC);
-        
+        System.out.println("48");
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. */
     }
 }
