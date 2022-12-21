@@ -1,9 +1,15 @@
 // public class testcodes {
 //     public static void main(String arg[]) {
-//         String a = "10+5";
+//         char a = '1';
 //         int b = 3, c = 5 ;
+//         //char[] aa = a.toCharArray();
+//         int x=0;
+//         x=1+2+3;
+//         //x=Integer.parseInt(String.valueOf(aa[0]))+'+'+Integer.parseInt(String.valueOf(aa[2]));
 //         //a = Integer.parseInt(a);
-//         System.out.printf(a);
+//         x=5+-2;
+//         int prev = Integer.parseInt(String.valueOf(a));
+//         System.out.print(prev);
 //     }
 // }
 // // import javax.script.ScriptEngineManager;

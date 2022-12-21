@@ -178,6 +178,12 @@ class MyStack {
   }
 
 interface IExpressionEvaluator {
+
+public void chkNegNeg(char[] INPChar,int i);
+
+public void chkPosNeg(char[] INPChar,int i);
+
+public String getExpression(String exp,String StrA,String StrB,String StrC);
     
 public int GetOperatorWeight(char op);
 
@@ -189,17 +195,52 @@ public Boolean IsOperand(char C);
 
 public String infixToPostfix(String expression);  
 
-// /**
-// * Evaluate a postfix numeric expression, with a single space separator
-// * @param expression postfix expression
-// * @return the expression evaluated value
-// */
 
-// public int evaluate(String expression);
+
+public int evaluate(String expression);
 
 }
 
 public class Evaluator implements IExpressionEvaluator {
+
+    public void chkNegNeg(char[] INPChar,int i){
+       
+        if(INPChar[i]=='-' && INPChar[i]==INPChar[i+1]){
+            if(i==0 || INPChar[i-1]=='(')
+                i=i+2;
+            else{
+                INPChar[i+1]='+';
+                i++;
+            }
+        }
+    }
+
+    public void chkPosNeg(char[] INPChar,int i){
+       
+        if(INPChar[i]=='+' && INPChar[i+1]=='-'){
+            INPChar[i]=INPChar[i-1];
+            i++;
+        }
+    }
+
+    public String getExpression(String exp,String StrA,String StrB,String StrC){
+        StrA = StrA.replaceAll("a=", "");
+        StrB = StrB.replaceAll("b=", "");
+        StrC = StrC.replaceAll("c=", "");
+        String[] StrExp = exp.split("");
+        String result = "";
+
+        for(int i=0;i<StrExp.length;i++){
+            switch(StrExp[i]){
+                case "a" : StrExp[i]=StrA; break;
+                case "b" : StrExp[i]=StrB; break;
+                case "c" : StrExp[i]=StrC; break;
+                default  : break;
+            }
+            result+=StrExp[i];
+        }
+        return result;
+    }
 
     public int GetOperatorWeight(char op){
         int weight = 0;
@@ -251,14 +292,14 @@ public class Evaluator implements IExpressionEvaluator {
         // System.out.println("11");
         for (int i=0; i<INPChar.length;i++){
 
-            if(INPChar[i]=='-' && INPChar[i]==INPChar[i+1]){
-                if(i==0 || INPChar[i-1]=='(')
-                    i=i+2;
-                else{
-                    INPChar[i+1]='+';
-                    i++;
-                }
+        if(INPChar[i]=='-' && INPChar[i]==INPChar[i+1]){
+            if(i==0 || INPChar[i-1]=='(')
+                i=i+2;
+            else{
+                INPChar[i+1]='+';
+                i++;
             }
+        }
 
             //if you are a number
             // System.out.println("22");
@@ -303,27 +344,177 @@ public class Evaluator implements IExpressionEvaluator {
         }
 
         String str = String. valueOf(copyOfINPChar);
+        //System.out.println(str);
+
         return str;
 
     }
 
+    public int evaluate(String expression){
+        char[] INPChar = expression.toCharArray();
+        char[] copyOfINPChar = new char[INPChar.length];
+        SingleLinkedList operationsList = new SingleLinkedList();
+        SingleLinkedList copyOFoperationsList = operationsList;
+
+        if(!operationsList.isEmpty()){
+            for(int i=0; i<INPChar.length;i++){
+                String s ="";
+                if(!(IsOperator(INPChar[i]) || INPChar[i]=='(' || INPChar[i]==')')){
+                    if(i>1 && INPChar[i-1]=='-' &&  INPChar[i-2]=='+')
+                        s="-";
+                    else if(i>2 && INPChar[i-1]=='-' &&  INPChar[i-2]=='-' &&  INPChar[i-3]=='-')
+                        s="-";
+                    while(i<INPChar.length && !(IsOperator(INPChar[i]) || INPChar[i]=='(' || INPChar[i]==')')){
+                        s+=INPChar[i];
+                        i++;
+                    }
+                    i--;
+                    //if (i>=INPChar.length) break;
+                    operationsList.add(s);
+                }
+                else if(IsOperator(INPChar[i]) &&  (i==0 || INPChar[i-1]=='(') && INPChar[i]=='-' && INPChar[i+1]=='-')
+                        i=i+1;
+                else if(IsOperator(INPChar[i]) && (INPChar[i]=='-' || INPChar[i]=='+') && INPChar[i+1]=='-'){
+                    s="+";
+                    i++;
+                    operationsList.add(s);
+                }
+                // else if((i+2)<INPChar.length && IsOperator(INPChar[i]) && INPChar[i]=='-' && INPChar[i+1]=='-' && INPChar[i+2]=='-'){
+                //     s="+";
+                //     i=i+2;
+                //     operationsList.add(s);
+                // }
+                else {
+                    s+=INPChar[i];
+                    operationsList.add(s);
+                }
+                    
+
+                
+            }
+            //operationsList.printSinglell();
+
+ 
+            
+            // copyOFoperationsList.printSinglell();
+        
+            for(int i=0; i<INPChar.length;i++){
+                if(operationsList.get(i)=="("){
+                    int j=i;
+                    String s = "";
+                    while(operationsList.get(i)!=")"){
+                        copyOFoperationsList.remove(i);
+                        s+=operationsList.get(i);
+                        i++;
+                    }
+                    copyOFoperationsList.remove(i);
+                    copyOFoperationsList.add(j, evaluate(s));
+                }
+            }
+
+            for(int i=0; i<INPChar.length;i++){
+                if(operationsList.get(i)=="^"){
+                    //c++;
+                    int next = Integer.parseInt(String.valueOf(operationsList.get(i+1)));
+                    int prev = Integer.parseInt(String.valueOf(operationsList.get(i-1)));
+
+                    copyOFoperationsList.add(i-1, Math.pow(prev, next));
+                    // if (INPChar[i+2]!='^'){
+                        copyOFoperationsList.remove(i);
+                        copyOFoperationsList.remove(i+1);
+                        copyOFoperationsList.remove(i+2);
+                    // }
+                    // else
+                    //     i--;
+                }
+            }
+
+            for(int i=0; i<INPChar.length;i++){
+                if(operationsList.get(i)=="*"){
+                    //c++;
+                    int next = Integer.parseInt(String.valueOf(operationsList.get(i+1)));
+                    int prev = Integer.parseInt(String.valueOf(operationsList.get(i-1)));
+
+                    copyOFoperationsList.add(i-1, next*prev);
+                    // if (INPChar[i+2]!='^'){
+                        copyOFoperationsList.remove(i);
+                        copyOFoperationsList.remove(i+1);
+                        copyOFoperationsList.remove(i+2);
+                    // }
+                    // else
+                    //     i--;
+                }
+                else if(operationsList.get(i)=="/"){
+                    //c++;
+                    int next = Integer.parseInt(String.valueOf(operationsList.get(i+1)));
+                    int prev = Integer.parseInt(String.valueOf(operationsList.get(i-1)));
+
+                    copyOFoperationsList.add(i-1, prev/next);
+                    // if (INPChar[i+2]!='^'){
+                        copyOFoperationsList.remove(i);
+                        copyOFoperationsList.remove(i+1);
+                        copyOFoperationsList.remove(i+2);
+                    // }
+                    // else
+                    //     i--;
+                }
+            }
+
+            for(int i=0; i<INPChar.length;i++){
+                if(operationsList.get(i)=="+"){
+                    //c++;
+                    int next = Integer.parseInt(String.valueOf(operationsList.get(i+1)));
+                    int prev = Integer.parseInt(String.valueOf(operationsList.get(i-1)));
+
+                    copyOFoperationsList.add(i-1, next+prev);
+                    // if (INPChar[i+2]!='^'){
+                        copyOFoperationsList.remove(i);
+                        copyOFoperationsList.remove(i+1);
+                        copyOFoperationsList.remove(i+2);
+                    // }
+                    // else
+                    //     i--;
+                }
+                else if(operationsList.get(i)=="-"){
+                    
+                    chkNegNeg(INPChar, i);
+
+                    int next = Integer.parseInt(String.valueOf(operationsList.get(i+1)));
+                    int prev = Integer.parseInt(String.valueOf(operationsList.get(i-1)));
+
+                    copyOFoperationsList.add(i-1, prev-next);
+                    // if (INPChar[i+2]!='^'){
+                        copyOFoperationsList.remove(i);
+                        copyOFoperationsList.remove(i+1);
+                        copyOFoperationsList.remove(i+2);
+                    // }
+                    // else
+                    //     i--;
+                }
+            }
+        }
+            //System.out.printf("linked list size : " + copyOFoperationsList.size());
+            return (int)copyOFoperationsList.get(0);
+    }
+
+
+    
+
     public static void main(String[] args) {
+        
+        Evaluator myEvaluator = new Evaluator(); //due to we cannot make a static reference to the non-static method
+                                                //so we created an object of the class and call the function from it
         Scanner sc = new Scanner(System.in);
         String input   = sc.nextLine();
         String stringA = sc.nextLine();
         String stringB = sc.nextLine();
         String stringC = sc.nextLine();
         
-        Evaluator myEvaluator = new Evaluator(); //due to we cannot make a static reference to the non-static method
-                                                //so we created an object of the class and call the function from it
-        System.out.println(myEvaluator.infixToPostfix(input));
-        
+        //System.out.println("======================OUTPUT::::::::::::::::::");
 
-        // System.out.println(input);
-        // System.out.println(stringA);
-        // System.out.println(stringB);
-        // System.out.println(stringC);
-        System.out.println("48");
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. */
+        String expression= myEvaluator.getExpression(input,stringA,stringB,stringC) ;
+        
+        System.out.println(myEvaluator.infixToPostfix(input));
+        System.out.println(myEvaluator.evaluate(expression));
     }
 }
